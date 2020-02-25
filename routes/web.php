@@ -20,4 +20,15 @@ Route::get('/api/books', 'APIBookController@index');
 Route::get('/books', 'BookController@index');
 
 Route::get('/books-orm', 'BookORMController@index');
+Route::get('/books-orm/create', 'BookORMController@create');
 Route::get('/books-orm/{id}', 'BookORMController@show');
+Route::get('/books-orm/{id}/edit', 'BookORMController@edit');
+Route::get('/books-orm/{id}/delete', 'BookORMController@delete');
+
+Route::get('/publishers', 'PublisherController@index');
+Route::get('/publishers/create', 'PublisherController@create');
+Route::get('/publishers/{publisher_id}', 'PublisherController@show');
+
+Route::post('/publishers', 'PublisherController@store');
+Route::post ('/books-orm', 'BookORMController@store');
+Route::post('/books-orm/{id}/edit', 'BookORMController@update');
