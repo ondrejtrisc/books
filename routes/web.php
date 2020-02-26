@@ -29,6 +29,9 @@ Route::get('/publishers', 'PublisherController@index');
 Route::get('/publishers/create', 'PublisherController@create');
 Route::get('/publishers/{publisher_id}', 'PublisherController@show');
 
+Route::get('/cart', 'CartController@index');
+Route::get('/cart/{book_id}', 'CartController@add');
+
 Route::post('/publishers', 'PublisherController@store');
 Route::post ('/books-orm', 'BookORMController@store');
 Route::post('/books-orm/{id}/edit', 'BookORMController@update');
