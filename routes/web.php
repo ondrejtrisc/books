@@ -35,3 +35,5 @@ Route::get('/cart/{book_id}', 'CartController@add');
 Route::post('/publishers', 'PublisherController@store');
 Route::post ('/books-orm', 'BookORMController@store');
 Route::post('/books-orm/{id}/edit', 'BookORMController@update');
+
+Route::post('/review/{book_id}', 'ReviewController@store');
