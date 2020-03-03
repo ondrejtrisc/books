@@ -1,8 +1,9 @@
-<form action="/books-orm" method="post">
+<form action="/books-orm" method="post" enctype="multipart/form-data">
   @csrf
   <input type="text" name="title" placeholder="title"><br>
   <input type="text" name="authors" placeholder="authors"><br>
-  <input type="text" name="image" placeholder="image"><br>
+  {{-- <input type="text" name="image" placeholder="image"><br> --}}
+  <input type="file" name="image_file"><br>
   publisher:
   <select name="publisher_id">
     @foreach ($publishers as $publisher)

@@ -37,3 +37,5 @@ Route::post ('/books-orm', 'BookORMController@store');
 Route::post('/books-orm/{id}/edit', 'BookORMController@update');
 
 Route::post('/review/{book_id}', 'ReviewController@store');
+
+Route::get('/books-qb', 'BookQueryBuilderController@index');

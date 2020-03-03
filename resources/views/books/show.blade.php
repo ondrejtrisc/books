@@ -1,7 +1,11 @@
 <img src={{$book->image}}><br>
 {{$book->title}}<br>
 by {{$book->authors}}<br>
-publisher by: {{$book->publisher->title}}<br>
+@if ($book->publisher !== null)
+    published by: {{$book->publisher->title}}<br>
+@else
+published by: unknown<br>
+@endif
 <a href="http://books/books-orm">back</a><br>
 <br>
 
