@@ -36,7 +36,8 @@ Route::post('/publishers', 'PublisherController@store');
 Route::post ('/books-orm', 'BookORMController@store');
 Route::post('/books-orm/{id}/edit', 'BookORMController@update');
 
-Route::post('/review/{book_id}', 'ReviewController@store');
+Route::post('/review/{book_id}', 'ReviewController@store')->middleware('auth');
+Route::delete('/review/{id}', 'ReviewController@delete')->middleware('can:admin');
 
 Route::get('/books-qb', 'BookQueryBuilderController@index');
 Auth::routes();
