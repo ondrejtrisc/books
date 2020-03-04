@@ -7,12 +7,17 @@
   <title>Document</title>
 </head>
 <body>
+
+  {{$books->links()}}
   
   @foreach ($books as $book)
       
     <div class="book">
       <h2>{{$book->title}}</h2>
-      By {{$book->authors}}
+      by {{$book->authors}}<br>
+      @if ($book->publisher)
+        published by {{$book->publisher->title}}
+      @endif
     </div>
 
   @endforeach
