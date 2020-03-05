@@ -49,3 +49,8 @@ Route::post('/bookshop', 'BookshopController@store');
 Route::get('/bookshops', 'BookshopController@index');
 Route::get('/bookshops/{id}', 'BookshopController@show');
 Route::post('/bookshops/{id}/add-book', 'BookshopController@addBook');
+Route::post('/bookshop/{id}/remove-book/{book_id}', 'BookshopController@removeBook');
+
+Route::post('/books-orm/{id}/add-bookshop', 'BookORMController@addBookshop');
+Route::post('/books-orm/{id}/remove-bookshop/{bookshop_id}', 'BookORMController@removeBookshop');
+

@@ -9,7 +9,33 @@ published by: unknown<br>
 <a href="http://books/books-orm">back</a><br>
 <br>
 
+<h2>Bookshops:</h2>
+<ul>
+    @foreach ($book->bookshops as $bookshop)
+      <li>
+        <form action="{{action('BookORMController@removeBookshop', ['id' => $book->id, 'bookshop_id' => $bookshop->id])}}" method="POST">
+          @csrf
+          {{$bookshop->name}}
+          @auth
+            <input type="submit" value="Remove">
+          @endauth
+        </form>
+      </li>
+    @endforeach
+</ul>
+
 @auth
+
+    <form action="{{action('BookORMController@addBookshop', ['id' => $book->id])}}" method="post">
+        @csrf
+        <select name="bookshop_id" id="">
+            @foreach ($bookshops as $bookshop)
+            <option value="{{$bookshop->id}}">{{$bookshop->name}}</option>
+            @endforeach
+        </select>
+        <button type="submit">Add</button>
+    </form>
+    
 
     @if (count($errors) > 0)
         <div class="alert alert-danger">

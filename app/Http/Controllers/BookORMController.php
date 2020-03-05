@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Book;
 use App\Publisher;
+use App\Bookshop;
 
 class BookORMController extends Controller
 {
@@ -21,7 +22,9 @@ class BookORMController extends Controller
         $book = Book::find($id);
         // $publisher_name = Publisher::find($book->publisher_id)->title;
 
-        $view = view('/books/show', compact('book'));
+        $bookshops = Bookshop::all();
+
+        $view = view('/books/show', compact('book', 'bookshops'));
 
         return $view;
     }
@@ -75,5 +78,27 @@ class BookORMController extends Controller
         $book->delete();
 
         return redirect('/books-orm');
+    }
+
+    public function addBookshop(Request $request, $id) {
+
+        $book = Book::findOrFail($id);
+
+        $bookshop_id = $request->input('bookshop_id');
+
+        if ($book->bookshops()->find($bookshop_id) === null) {
+            $book->bookshops()->attach($bookshop_id);
+        }
+
+        return redirect(action('BookORMController@show', ['id' => $id]));
+    }
+
+    public function removeBookshop(Request $request, $id, $bookshop_id) {
+
+        $book = Book::findOrFail($id);
+
+        $book->bookshops()->detach($bookshop_id);
+
+        return redirect(action('BookORMController@show', ['id' => $id]));
     }
 }

@@ -19,6 +19,8 @@ class Book extends Model
 
     public function bookshops() {
 
-        return $this->belongsToMany(Bookshop::class);
+        return $this
+            ->belongsToMany(Bookshop::class, 'book_bookshop')
+            ->withPivot(['count']);
     }
 }

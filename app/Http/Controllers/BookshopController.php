@@ -50,9 +50,26 @@ class BookshopController extends Controller
         $bookshop = Bookshop::findOrFail($id);
 
         $book_id = $request->input('book_id');
+        $count = $request->input('count');
 
-        $bookshop->books()->attach($book_id);
-        
-        return $book_id;
+        if ($bookshop->books()->find($book_id) === null) {
+            $bookshop->books()->attach($book_id, ['count' => $count]);
+        }
+        else {
+            $newCount = $bookshop->books()->find($book_id)->pivot->count + $count;
+            $bookshop->books()->detach($book_id);
+            $bookshop->books()->attach($book_id, ['count' => $newCount]);
+        }
+
+        return redirect(action('BookshopController@show', ['id' => $id]));
+    }
+
+    public function removeBook(Request $request, $id, $book_id) {
+
+        $bookshop = Bookshop::findOrFail($id);
+
+        $bookshop->books()->detach($book_id);
+
+        return redirect(action('BookshopController@show', ['id' => $id]));
     }
 }
