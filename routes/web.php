@@ -43,3 +43,7 @@ Route::get('/books-qb', 'BookQueryBuilderController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/bookshop/create', 'BookshopController@create');
+Route::post('/bookshop', 'BookshopController@store');
+Route::get('/bookshops', 'BookshopController@index');
